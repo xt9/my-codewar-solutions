@@ -1,0 +1,25 @@
+{
+  "name": "codewar-katas",
+  "version": "1.0.0",
+  "description": "Codewars have no good way of sharing all your completed solutions with the public, so I have bundled them all up here.  \r Each file will have a link at the top, which leads to the kata (problem).",
+  "main": "categorize-katas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xt9/my-codewar-solutions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xt9/my-codewar-solutions/issues"
+  },
+  "homepage": "https://github.com/xt9/my-codewar-solutions#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "get-urls": "^9.2.0",
+    "request": "^2.88.0"
+  }
+}
