@@ -58,25 +58,6 @@ function canConvertNeighbour(chars, i, priest, enemyPriest, convertables) {
     }
 }
 
-
-function getScores(chars) {
-  let leftTroops = new Map([['w', 4], ['p', 3], ['b', 2] , ['s', 1]]);
-  let rightTroops = new Map([['m', 4], ['q', 3], ['d', 2] , ['z', 1]]);
-  
-  let left = 0;
-  let right = 0;
-  
-  chars.forEach(c => {
-    if(leftTroops.get(c) !== undefined) {
-      left += leftTroops.get(c);
-    } else if(rightTroops.get(c) !== undefined) {
-      right += rightTroops.get(c);
-    }
-  });
-  
-  return { left, right };
-}
-
 function getScores(chars) {
   let leftTroops = new Map([['w', 4], ['p', 3], ['b', 2] , ['s', 1]]);
   let rightTroops = new Map([['m', 4], ['q', 3], ['d', 2] , ['z', 1]]);
