@@ -4,54 +4,26 @@ class Wand {
   constructor(spells) {
     this.spellList = [];
     
-    if(spells) {
-      let spellMap = new Map(Object.entries(spells));
-      spellMap.forEach((v, k) => this[k] = () => {
-        this.spellList.unshift(k);
-        return v.apply(this);
-      });
-    }
+    Object.assign(this, spells);
     
     return new Proxy(this, {
-      set: function(target, name, val) {
-        if(isFunction(val)) {
-          target[name] = function() {
-            target.spellList.unshift(name);
-            return val.apply(target);
-          };
-        } else {
-          target[name] = val;
+      get: function(target, key) {
+        if(typeof target[key] === 'function') {
+          target.spellList = [key, ...target.spellList];
+          return target[key];
         }
-        return true;
+        return target[key];
       }
     });
   }
   
   deletrius() {
-    this.spellList = [];
-    let result = [...this.spellList];
-    this.spellList.unshift('deletrius');
-    return result;
+    this.spellList.splice(1);
   }
   
   prioriIncantatem() {
-    let result = [...this.spellList].filter((spell, i) => {
-      return i < MAX_PRIOR_SPELLS;
+    return [...this.spellList].filter((spell, i) => {
+      return i > 0 && i <= MAX_PRIOR_SPELLS;
     });
-    this.spellList.unshift('prioriIncantatem');
-    return result;
   }
-}
-
-Object.getOwnPropertyNames(Object.prototype).forEach(key => {
-  if(isFunction(Object.prototype[key])) {
-    Wand.prototype[key] = function() {
-      this.spellList.unshift(key);
-      return Object.prototype[key].apply(this);
-    };
-  }
-});
-
-function isFunction(functionToCheck) {
- return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 }
